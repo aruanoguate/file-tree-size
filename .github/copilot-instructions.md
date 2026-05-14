@@ -38,6 +38,12 @@ JSON tags use the `json-v*` prefix. XML tags use the `xml-v*` prefix.
 
 **Never** run `vsce:publish` or attempt a manual marketplace publish.
 
+## Git Commit Hygiene
+
+- **Never amend pushed commits** — always create new commits. `git commit --amend` rewrites history and causes divergent branches that require force-pushes.
+- **Never use `git push --force`** or `--force-with-lease` — if local and remote diverge, fix by resetting to origin and creating a new commit.
+- When committing multiple related changes, split them into sequential commits that show evolutionary progress.
+
 ## Build
 
 ```bash
