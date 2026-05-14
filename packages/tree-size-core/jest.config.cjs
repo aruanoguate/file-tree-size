@@ -9,6 +9,7 @@ module.exports = {
     'src/**/*.ts',
     '!src/index.ts',
     '!src/types.ts',
+    '!src/webview/app.ts',
     '!src/webview/main.ts',
   ],
   transform: {
