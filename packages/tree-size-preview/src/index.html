@@ -257,11 +257,12 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
       border-radius: 999px;
       border: 1px solid var(--border);
       padding: 12px 18px;
       font: inherit;
+      font-size: 0.92rem;
       background: rgba(255, 255, 255, 0.72);
       color: var(--text);
       transition: transform 120ms ease, background 120ms ease;
@@ -269,6 +270,14 @@
 
     .marketplace-link:hover {
       transform: translateY(-1px);
+    }
+
+    .link-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      display: inline-block;
+      vertical-align: middle;
     }
 
     .lab-shell {
@@ -759,7 +768,7 @@
             <div>One repo, shared runtime, browser demo for both VS Code extensions.</div>
           </div>
         </div>
-        <a class="secondary-link" href="https://github.com/aruanoguate/file-tree-size">View Repository</a>
+        <a class="secondary-link" href="https://github.com/aruanoguate/file-tree-size" target="_blank" rel="noopener noreferrer"><svg class="link-icon" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"/></svg> GitHub</a>
       </header>
 
       <section class="hero">
@@ -790,8 +799,8 @@
               </div>
               <div class="product-links">
                 <button class="primary-link" type="button" data-open-lab-format="json">Preview JSON</button>
-                <a class="marketplace-link" href="https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.json-treesize">View VS Marketplace</a>
-                <a class="marketplace-link" href="https://open-vsx.org/extension/AlvaroEnriqueRuano/json-treesize">View Open VSX</a>
+                <a class="marketplace-link" href="https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.json-treesize" target="_blank" rel="noopener noreferrer"><svg class="link-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M29.01 5.03l-5.766-2.776a1.742 1.742 0 00-1.989.338L2.38 19.8a1.166 1.166 0 00-.08 1.647l2.5 2.726a1.174 1.174 0 001.59.076l22.28-17.253a1.108 1.108 0 011.34 1.737z" fill="#0065A9"/><path d="M29.01 26.97l-5.766 2.777a1.745 1.745 0 01-1.989-.338L2.38 12.2a1.166 1.166 0 01-.08-1.647l2.5-2.726a1.174 1.174 0 011.59-.076l22.28 17.253a1.108 1.108 0 001.34-1.737z" fill="#007ACC"/><path d="M23.244 29.747a1.744 1.744 0 01-1.989-.338c.564.564 1.523.164 1.523-.633V3.225c0-.797-.96-1.197-1.523-.633a1.744 1.744 0 011.989-.338l5.765 2.772A1.756 1.756 0 0130 6.7v18.6a1.756 1.756 0 01-0.991 1.576z" fill="#1F9CF0"/></svg> VS Marketplace</a>
+                <a class="marketplace-link" href="https://open-vsx.org/extension/AlvaroEnriqueRuano/json-treesize" target="_blank" rel="noopener noreferrer"><svg class="link-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 4A4.5 4.5 0 004 8.5v15A4.5 4.5 0 008.5 28h15a4.5 4.5 0 004.5-4.5v-15A4.5 4.5 0 0023.5 4h-15zM16 8l7 4v8l-7 4-7-4v-8l7-4zm0 2.31L11 12.6v6.8l5 2.29 5-2.29v-6.8l-5-2.29z" fill="#a60ee5"/></svg> Open VSX</a>
               </div>
             </article>
 
@@ -803,8 +812,8 @@
               </div>
               <div class="product-links">
                 <button class="primary-link" type="button" data-open-lab-format="xml">Preview XML</button>
-                <a class="marketplace-link" href="https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.xml-tree-size">View VS Marketplace</a>
-                <a class="marketplace-link" href="https://open-vsx.org/extension/AlvaroEnriqueRuano/xml-tree-size">View Open VSX</a>
+                <a class="marketplace-link" href="https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.xml-tree-size" target="_blank" rel="noopener noreferrer"><svg class="link-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M29.01 5.03l-5.766-2.776a1.742 1.742 0 00-1.989.338L2.38 19.8a1.166 1.166 0 00-.08 1.647l2.5 2.726a1.174 1.174 0 001.59.076l22.28-17.253a1.108 1.108 0 011.34 1.737z" fill="#0065A9"/><path d="M29.01 26.97l-5.766 2.777a1.745 1.745 0 01-1.989-.338L2.38 12.2a1.166 1.166 0 01-.08-1.647l2.5-2.726a1.174 1.174 0 011.59-.076l22.28 17.253a1.108 1.108 0 001.34-1.737z" fill="#007ACC"/><path d="M23.244 29.747a1.744 1.744 0 01-1.989-.338c.564.564 1.523.164 1.523-.633V3.225c0-.797-.96-1.197-1.523-.633a1.744 1.744 0 011.989-.338l5.765 2.772A1.756 1.756 0 0130 6.7v18.6a1.756 1.756 0 01-0.991 1.576z" fill="#1F9CF0"/></svg> VS Marketplace</a>
+                <a class="marketplace-link" href="https://open-vsx.org/extension/AlvaroEnriqueRuano/xml-tree-size" target="_blank" rel="noopener noreferrer"><svg class="link-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 4A4.5 4.5 0 004 8.5v15A4.5 4.5 0 008.5 28h15a4.5 4.5 0 004.5-4.5v-15A4.5 4.5 0 0023.5 4h-15zM16 8l7 4v8l-7 4-7-4v-8l7-4zm0 2.31L11 12.6v6.8l5 2.29 5-2.29v-6.8l-5-2.29z" fill="#a60ee5"/></svg> Open VSX</a>
               </div>
             </article>
           </div>
