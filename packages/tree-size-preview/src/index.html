@@ -3,8 +3,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tree Size Preview Lab</title>
+  <title>Tree Size — Find What's Bloating Your JSON &amp; XML Files | VS Code Extension</title>
+  <meta name="description" content="Instantly visualize which keys and elements consume the most bytes in your JSON and XML files. Free, open-source VS Code extensions with interactive tree explorer, heat-map coloring, and one-click source navigation. Try the live preview or install from the VS Marketplace." />
+  <meta name="keywords" content="JSON size analyzer, XML size analyzer, VS Code extension, JSON tree size, XML tree size, payload weight, file size visualization, developer tools, open source" />
+  <meta name="author" content="Alvaro Enrique Ruano" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://aruanoguate.github.io/file-tree-size/" />
   <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Tree Size — Find What's Bloating Your JSON & XML Files" />
+  <meta property="og:description" content="Free VS Code extensions that visualize byte-level weight of every key and element in your JSON and XML files. Interactive tree explorer, heat-map coloring, and live browser preview." />
+  <meta property="og:url" content="https://aruanoguate.github.io/file-tree-size/" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/aruanoguate/file-tree-size/main/packages/json-tree-size/docs/screenshot.png" />
+  <meta property="og:image:alt" content="JSON Tree Size extension showing a split view with tree explorer and detail bar chart" />
+  <meta property="og:site_name" content="Tree Size for VS Code" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tree Size — Find What's Bloating Your JSON & XML Files" />
+  <meta name="twitter:description" content="Free VS Code extensions that visualize byte-level weight of every key and element in your JSON and XML files. Try the live browser preview." />
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/aruanoguate/file-tree-size/main/packages/json-tree-size/docs/screenshot.png" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "Tree Size for VS Code",
+        "url": "https://aruanoguate.github.io/file-tree-size/",
+        "description": "Interactive VS Code extensions that visualize byte-level weight of JSON and XML files."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "JSON Tree Size",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Windows, macOS, Linux",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "author": { "@type": "Person", "name": "Alvaro Enrique Ruano", "url": "https://github.com/aruanoguate" },
+        "softwareVersion": "1.1",
+        "description": "Visualize which keys and nested objects consume the most bytes in your JSON files. Interactive tree explorer with heat-map coloring inside VS Code.",
+        "url": "https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.json-treesize",
+        "downloadUrl": "https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.json-treesize",
+        "screenshot": "https://raw.githubusercontent.com/aruanoguate/file-tree-size/main/packages/json-tree-size/docs/screenshot.png"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "XML Tree Size",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Windows, macOS, Linux",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "author": { "@type": "Person", "name": "Alvaro Enrique Ruano", "url": "https://github.com/aruanoguate" },
+        "softwareVersion": "1.0",
+        "description": "Visualize which elements, attributes, and text nodes consume the most bytes in your XML files. Interactive tree explorer with heat-map coloring inside VS Code.",
+        "url": "https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.xml-tree-size",
+        "downloadUrl": "https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.xml-tree-size",
+        "screenshot": "https://raw.githubusercontent.com/aruanoguate/file-tree-size/main/packages/xml-tree-size/docs/screenshot.png"
+      }
+    ]
+  }
+  </script>
   <style>
     :root {
       --page-bg: #f6f3ee;
@@ -771,14 +832,14 @@
   data-l10n-keys="keys"
   data-l10n-open-in-editor="Reveal in source ↗"
 >
-  <div class="page-shell">
+  <main class="page-shell">
     <section id="landing-view">
       <header class="site-header">
         <div class="brand">
           <div class="brand-mark">TS</div>
           <div>
-            <strong>Tree Size Preview</strong>
-            <div>One repo, shared runtime, browser demo for both VS Code extensions.</div>
+            <strong>Tree Size for VS Code</strong>
+            <div>Free extensions to visualize file weight — JSON &amp; XML</div>
           </div>
         </div>
         <a class="secondary-link" href="https://github.com/aruanoguate/file-tree-size" target="_blank" rel="noopener noreferrer"><svg class="link-icon" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"/></svg> GitHub</a>
@@ -786,21 +847,23 @@
 
       <section class="hero">
         <article class="hero-copy">
-          <span class="eyebrow">Landing Page</span>
-          <h1>Inspect payload weight before you open VS Code.</h1>
+          <span class="eyebrow">Open-Source VS Code Extensions</span>
+          <h1>Find what's bloating your JSON &amp; XML files.</h1>
           <p>
-            The public site is now a proper entry point instead of a long single screen. Start from the landing page,
-            then move into a focused preview lab where you can pick a format, load a sample or your own file, and inspect the tree interactively.
+            Ever opened a multi-megabyte config, API response, or data export and wondered <em>where all those bytes are hiding?</em>
+            Tree Size gives you the answer instantly — an interactive, ranked breakdown of every key and element by size, right inside VS Code.
           </p>
           <p>
-            The JSON and XML experiences still reuse the same parser and shared browser UI that power the extensions, so the demo stays aligned with the real product.
+            Free, open-source, zero telemetry. Built as a solo project by
+            <a href="https://github.com/aruanoguate" target="_blank" rel="noopener noreferrer" style="color: var(--active-accent); text-decoration: underline;">Alvaro Enrique Ruano</a>.
+            Try the live preview below or install directly from the marketplace.
           </p>
         </article>
 
         <aside class="hero-products" aria-label="Product preview options">
           <div class="hero-products-header">
-            <h2>Choose the analyzer you want to preview</h2>
-            <p>Both products now sit side by side on the landing page, with direct paths to the live preview plus both extension marketplaces.</p>
+            <h2>Available for JSON and XML</h2>
+            <p>Each extension is purpose-built for its format. Preview them live in your browser, or install from the VS Marketplace and Open VSX.</p>
           </div>
 
           <div class="product-grid">
@@ -808,7 +871,7 @@
               <img src="./assets/json-icon.png" alt="JSON Tree Size icon" />
               <div>
                 <h2>JSON Tree Size</h2>
-                <p>Measure nested objects and arrays, rank the heaviest keys, and jump to the exact source position.</p>
+                <p>See which keys, arrays, and nested objects weigh the most. Drill down the tree, spot the heaviest branches, and jump to the exact line in your source.</p>
               </div>
               <div class="product-links">
                 <button class="primary-link" type="button" data-open-lab-format="json">Preview JSON</button>
@@ -821,7 +884,7 @@
               <img src="./assets/xml-icon.svg" alt="XML Tree Size icon" />
               <div>
                 <h2>XML Tree Size</h2>
-                <p>Inspect elements, attributes, CDATA, and text nodes with the same ranked tree and detail drill-down.</p>
+                <p>Analyze elements, attributes, CDATA, and text nodes. Same interactive tree and ranked detail view, optimized for XML payloads.</p>
               </div>
               <div class="product-links">
                 <button class="primary-link" type="button" data-open-lab-format="xml">Preview XML</button>
@@ -915,7 +978,21 @@
         </aside>
       </div>
     </section>
-  </div>
+  </main>
+
+  <footer style="text-align:center; padding:24px 20px 36px; color:var(--muted); font-size:0.88rem; line-height:1.6;">
+    <p>Made by <a href="https://github.com/aruanoguate" target="_blank" rel="noopener noreferrer" style="color:var(--text); text-decoration:underline;">Alvaro Enrique Ruano</a> &middot; MIT License &middot; <a href="https://github.com/aruanoguate/file-tree-size" target="_blank" rel="noopener noreferrer" style="color:var(--text); text-decoration:underline;">Source on GitHub</a></p>
+  </footer>
+
+  <noscript>
+    <div style="max-width:640px; margin:60px auto; padding:32px; text-align:center; font-family:sans-serif; color:#14213d;">
+      <h1>Tree Size for VS Code</h1>
+      <p>Free, open-source extensions that visualize which keys and elements consume the most bytes in your JSON and XML files.</p>
+      <p><strong>JSON Tree Size</strong> — <a href="https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.json-treesize">VS Marketplace</a> · <a href="https://open-vsx.org/extension/AlvaroEnriqueRuano/json-treesize">Open VSX</a></p>
+      <p><strong>XML Tree Size</strong> — <a href="https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.xml-tree-size">VS Marketplace</a> · <a href="https://open-vsx.org/extension/AlvaroEnriqueRuano/xml-tree-size">Open VSX</a></p>
+      <p>Enable JavaScript to use the interactive live preview.</p>
+    </div>
+  </noscript>
 
   <script src="./site.js"></script>
 </body>
