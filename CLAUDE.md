@@ -52,3 +52,29 @@ npm run watch     # watch mode during development
 ```bash
 npm test
 ```
+
+## SonarCloud Workflow
+
+When investigating SonarCloud failures, do not start from editor diagnostics alone.
+
+1. Check the latest GitHub Actions Sonar run first:
+   - `gh run list --workflow sonarcloud.yml --limit 5 --json databaseId,displayTitle,headSha,status,conclusion,createdAt,updatedAt`
+   - `gh run view <run-id> --json status,conclusion,url,jobs`
+2. Query the live SonarCloud result directly:
+   - Quality gate: `curl --silent --show-error 'https://sonarcloud.io/api/qualitygates/project_status?projectKey=aruanoguate_file-tree-size'`
+   - Open issues: `curl --silent --show-error 'https://sonarcloud.io/api/issues/search?componentKeys=aruanoguate_file-tree-size&resolved=false&ps=100'`
+   - Use the live issue list to identify the exact file, rule, and metric before editing anything.
+3. Run the local preflight before pushing fixes:
+   - `npm run test:all`
+   - `npm run compile`
+   - For TypeScript-specific findings, run focused checks such as `npx tsc -p packages/<package>/tsconfig.json --noEmit`.
+4. If the finding touches shared browser/webview code imported across packages, make sure the owning `tsconfig.json` files include the correct DOM libs and a `rootDir` that actually covers shared sources.
+5. If `SONAR_TOKEN` is available locally, reproduce the CI scan as closely as possible:
+   - `npm ci`
+   - `npm --prefix packages/tree-size-core run test -- --coverage --ci`
+   - `npm --prefix packages/json-tree-size run test -- --coverage --ci`
+   - `npm --prefix packages/xml-tree-size run test -- --coverage --ci`
+   - `npm --prefix packages/tree-size-preview run test -- --coverage --ci`
+   - Rewrite LCOV paths exactly as in `.github/workflows/sonarcloud.yml`
+   - `sonar-scanner`
+6. After pushing a fix, re-check both the GitHub Actions run and the public SonarCloud APIs. Public issue data can lag until the new analysis completes.
