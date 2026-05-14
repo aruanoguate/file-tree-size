@@ -9,6 +9,8 @@ module.exports = {
     'src/**/*.ts',
     '!src/index.ts',
     '!src/types.ts',
+    '!src/worker/browserBootstrap.ts',
+    '!src/worker/nodeBootstrap.ts',
     '!src/webview/app.ts',
     '!src/webview/main.ts',
   ],
