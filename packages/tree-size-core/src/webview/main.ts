@@ -1,5 +1,6 @@
 import { WebviewToExtensionMessage } from '../types';
 import { createTreeSizeWebviewApp } from './app';
+import { isExtensionToWebviewMessage } from './messages';
 
 declare function acquireVsCodeApi(): {
   postMessage(msg: WebviewToExtensionMessage): void;
@@ -12,8 +13,11 @@ createTreeSizeWebviewApp({
     vscode.postMessage(msg);
   },
   onMessage: (listener) => {
-    window.addEventListener('message', (event: MessageEvent<unknown>) => {
-      listener(event.data as never);
+    globalThis.addEventListener('message', (event: MessageEvent<unknown>) => {
+      if (event.origin !== globalThis.location.origin || !isExtensionToWebviewMessage(event.data)) {
+        return;
+      }
+      listener(event.data);
     });
   },
 });
