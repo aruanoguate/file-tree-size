@@ -39,7 +39,6 @@ const productCards = Array.from(document.querySelectorAll<HTMLElement>('[data-pr
 const landingView = getRequiredElement<HTMLElement>('landing-view');
 const labView = getRequiredElement<HTMLElement>('lab-view');
 const backHomeBtn = getRequiredElement<HTMLButtonElement>('back-home-btn');
-const heroEnterBtn = document.getElementById('hero-enter-lab-btn');
 const fileInput = getRequiredElement<HTMLInputElement>('file-input');
 const loadDemoBtn = getRequiredElement<HTMLButtonElement>('load-demo-btn');
 const statusText = getRequiredElement<HTMLElement>('status-text');
@@ -71,12 +70,6 @@ openLabButtons.forEach((button) => {
     void openLab(format as PreviewFormat, true);
   });
 });
-
-if (heroEnterBtn instanceof HTMLButtonElement) {
-  heroEnterBtn.addEventListener('click', () => {
-    void openLab(state.format, true);
-  });
-}
 
 backHomeBtn.addEventListener('click', () => {
   setPage('landing');
