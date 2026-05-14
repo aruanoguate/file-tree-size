@@ -1,40 +1,50 @@
 import { WorkerToExtensionMessage, WebviewToExtensionMessage } from '../../tree-size-core/src/types';
 import { createTreeSizeWebviewApp } from '../../tree-size-core/src/webview/app';
 import { PREVIEW_FORMATS, PreviewFormat, inferFormatFromFileName, resolveInitialFormat } from './format';
+import { buildPreviewUrl, PreviewPage, resolveInitialPage } from './pageState';
 import { createPreviewHost } from './previewHost';
 import { buildSourcePreview, formatSourceMeta } from './sourcePreview';
 
 interface PreviewState {
+  page: PreviewPage;
   format: PreviewFormat;
   requestId: number;
   currentSource: string;
   currentFileName: string;
   bootstrapped: boolean;
+  hostReady: boolean;
 }
 
 function getRequiredElement<T extends HTMLElement>(id: string): T {
   const element = document.getElementById(id);
   if (!(element instanceof HTMLElement)) {
-    throw new Error(`Required element #${id} not found`);
+    throw new TypeError(`Required element #${id} not found`);
   }
   return element as T;
 }
 
 const state: PreviewState = {
-  format: resolveInitialFormat(window.location.search),
+  page: resolveInitialPage(globalThis.location.search),
+  format: resolveInitialFormat(globalThis.location.search),
   requestId: 0,
   currentSource: '',
   currentFileName: '',
   bootstrapped: false,
+  hostReady: false,
 };
 
 const formatButtons = Array.from(document.querySelectorAll<HTMLElement>('[data-format]'));
-const previewLinks = Array.from(document.querySelectorAll<HTMLElement>('[data-preview-format]'));
+const openLabButtons = Array.from(document.querySelectorAll<HTMLElement>('[data-open-lab-format]'));
 const productCards = Array.from(document.querySelectorAll<HTMLElement>('[data-product-card]'));
+const landingView = getRequiredElement<HTMLElement>('landing-view');
+const labView = getRequiredElement<HTMLElement>('lab-view');
+const backHomeBtn = getRequiredElement<HTMLButtonElement>('back-home-btn');
+const heroEnterBtn = getRequiredElement<HTMLButtonElement>('hero-enter-lab-btn');
 const fileInput = getRequiredElement<HTMLInputElement>('file-input');
 const loadDemoBtn = getRequiredElement<HTMLButtonElement>('load-demo-btn');
 const statusText = getRequiredElement<HTMLElement>('status-text');
 const fileMeta = getRequiredElement<HTMLElement>('file-meta');
+const currentFormatLabel = getRequiredElement<HTMLElement>('current-format-label');
 const sourceTitle = getRequiredElement<HTMLElement>('source-title');
 const sourceMeta = getRequiredElement<HTMLElement>('source-meta');
 const sourceView = getRequiredElement<HTMLElement>('source-view');
@@ -52,14 +62,22 @@ formatButtons.forEach((button) => {
   });
 });
 
-previewLinks.forEach((link) => {
-  link.addEventListener('click', () => {
-    const format = link.dataset.previewFormat;
+openLabButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const format = button.dataset.openLabFormat;
     if (!format) {
       return;
     }
-    void setFormat(format as PreviewFormat, true);
+    void openLab(format as PreviewFormat, true);
   });
+});
+
+heroEnterBtn.addEventListener('click', () => {
+  void openLab(state.format, true);
+});
+
+backHomeBtn.addEventListener('click', () => {
+  setPage('landing');
 });
 
 fileInput.addEventListener('change', async () => {
@@ -73,6 +91,7 @@ fileInput.addEventListener('change', async () => {
     await setFormat(inferredFormat, false);
   }
 
+  setPage('lab');
   const text = await file.text();
   await analyzeText(text, file.name);
   fileInput.value = '';
@@ -82,32 +101,62 @@ loadDemoBtn.addEventListener('click', () => {
   void loadDemo(state.format);
 });
 
-void setFormat(state.format, false);
+applyFormatUi();
+setPage(state.page);
 
-async function setFormat(format: PreviewFormat, loadDemo: boolean): Promise<void> {
+async function setFormat(format: PreviewFormat, shouldLoadDemo: boolean): Promise<void> {
   state.format = format;
-  const config = PREVIEW_FORMATS[format];
+  applyFormatUi();
+  syncUrl();
+
+  if (state.page === 'lab' && state.bootstrapped && shouldLoadDemo) {
+    await loadDemo(format);
+  }
+}
+
+function applyFormatUi(): void {
+  const config = PREVIEW_FORMATS[state.format];
   document.documentElement.style.setProperty('--active-accent', config.accent);
   document.documentElement.style.setProperty('--active-accent-soft', `${config.accent}26`);
   fileInput.accept = config.accept;
   loadDemoBtn.textContent = `Load ${config.label} sample`;
-  statusText.textContent = `Ready to preview ${config.label}.`;
+  currentFormatLabel.textContent = config.label;
+  if (!state.currentFileName) {
+    statusText.textContent = `Ready to preview ${config.label}.`;
+  }
 
   formatButtons.forEach((button) => {
-    button.classList.toggle('active', button.dataset.format === format);
+    button.classList.toggle('active', button.dataset.format === state.format);
   });
   productCards.forEach((card) => {
-    card.classList.toggle('active', card.dataset.productCard === format);
+    card.classList.toggle('active', card.dataset.productCard === state.format);
   });
+}
 
-  const params = new URLSearchParams(window.location.search);
-  params.set('format', format);
-  const nextUrl = `${window.location.pathname}?${params.toString()}${window.location.hash}`;
-  window.history.replaceState({}, '', nextUrl);
+function setPage(page: PreviewPage): void {
+  state.page = page;
+  landingView.classList.toggle('hidden', page !== 'landing');
+  labView.classList.toggle('hidden', page !== 'lab');
+  syncUrl();
 
-  if (state.bootstrapped && loadDemo) {
-    await loadDemo(format);
+  if (page === 'lab' && state.hostReady && !state.currentFileName) {
+    void loadDemo(state.format);
   }
+}
+
+async function openLab(format: PreviewFormat, shouldLoadDemo: boolean): Promise<void> {
+  if (format !== state.format) {
+    await setFormat(format, false);
+  }
+  setPage('lab');
+  if (shouldLoadDemo && state.hostReady) {
+    await loadDemo(state.format);
+  }
+}
+
+function syncUrl(): void {
+  const nextUrl = buildPreviewUrl(globalThis.location.pathname, state.page, state.format);
+  globalThis.history.replaceState({}, '', nextUrl);
 }
 
 async function loadDemo(format: PreviewFormat): Promise<void> {
@@ -133,7 +182,7 @@ async function analyzeText(text: string, fileName: string): Promise<void> {
   statusText.textContent = `Analyzing ${fileName} with ${config.label}…`;
   fileMeta.textContent = `${fileName} · ${(new Blob([text]).size / 1024).toFixed(1)} KB`;
 
-  const worker = new Worker(new URL(config.workerPath, window.location.href));
+  const worker = new Worker(new URL(config.workerPath, globalThis.location.href));
 
   worker.addEventListener('message', (event: MessageEvent<WorkerToExtensionMessage>) => {
     if (requestId !== state.requestId) {
@@ -172,9 +221,12 @@ async function analyzeText(text: string, fileName: string): Promise<void> {
 
 function handleOutboundMessage(msg: WebviewToExtensionMessage): void {
   if (msg.type === 'ready') {
+    state.hostReady = true;
     if (!state.bootstrapped) {
       state.bootstrapped = true;
-      void loadDemo(state.format);
+      if (state.page === 'lab') {
+        void loadDemo(state.format);
+      }
     }
     return;
   }

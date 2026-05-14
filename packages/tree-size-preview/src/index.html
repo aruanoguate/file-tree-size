@@ -42,15 +42,52 @@
       text-decoration: none;
     }
 
+    .hidden { display: none !important; }
+
     .page-shell {
       max-width: 1440px;
       margin: 0 auto;
       padding: 32px 20px 48px;
     }
 
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 22px;
+      padding: 0 4px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(74, 158, 218, 0.18), rgba(232, 131, 42, 0.22));
+      color: var(--text);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .site-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
       gap: 28px;
       align-items: stretch;
       margin-bottom: 28px;
@@ -165,19 +202,45 @@
       gap: 18px;
     }
 
-    .product-card {
+    .hero-products-header h2 {
+      margin: 0 0 6px;
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-products-header p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .product-grid {
       display: grid;
-      grid-template-columns: 72px minmax(0, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
-      padding: 18px;
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 20px;
       border-radius: 22px;
       border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.86);
+      background: rgba(255, 255, 255, 0.9);
+      min-height: 100%;
     }
 
     .product-card.active {
       border-color: color-mix(in srgb, var(--active-accent) 55%, white);
       box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--active-accent) 18%, transparent);
+    }
+
+    .product-icon-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
     }
 
     .product-card img {
@@ -202,20 +265,85 @@
       font-size: 0.96rem;
     }
 
+    .product-badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(20, 33, 61, 0.06);
+      color: var(--muted);
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+
     .product-links {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      margin-top: auto;
     }
 
-    .product-link {
-      font-size: 0.92rem;
-      color: var(--muted);
+    .marketplace-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 12px 18px;
+      font: inherit;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--text);
+      transition: transform 120ms ease, background 120ms ease;
+    }
+
+    .marketplace-link:hover {
+      transform: translateY(-1px);
     }
 
     .lab-shell {
       padding: 20px;
       margin-top: 20px;
+    }
+
+    .lab-topbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--text);
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .lab-path {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .step-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .step-chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(20, 33, 61, 0.06);
+      color: var(--muted);
+      font-size: 0.84rem;
     }
 
     .lab-header {
@@ -297,8 +425,6 @@
       height: 100%;
       min-height: 680px;
     }
-
-    .hidden { display: none !important; }
 
     .loading-state,
     .error-state {
@@ -580,7 +706,8 @@
 
     @media (max-width: 1120px) {
       .hero,
-      .workspace {
+      .workspace,
+      .product-grid {
         grid-template-columns: 1fr;
       }
 
@@ -604,11 +731,6 @@
       .hero-products,
       .lab-shell {
         border-radius: 24px;
-      }
-
-      .hero-copy,
-      .hero-products,
-      .lab-shell {
         padding: 18px;
       }
 
@@ -653,56 +775,96 @@
   data-l10n-open-in-editor="Reveal in source ↗"
 >
   <div class="page-shell">
-    <section class="hero">
-      <article class="hero-copy">
-        <span class="eyebrow">GitHub Pages Preview</span>
-        <h1>Inspect payload weight before you install the extension.</h1>
-        <p>
-          This preview lab runs the same tree-size analysis logic used by the VS Code extensions.
-          Load a JSON or XML file in the browser, inspect the weighted tree, and reveal matching source lines instantly.
-        </p>
-        <p>
-          The repo now owns one shared codebase for the extensions and the public demo, so local development,
-          unit tests, and deployment stay in the same pipeline.
-        </p>
-        <div class="cta-row">
-          <a class="primary-link" href="#preview-lab">Open Live Preview</a>
+    <section id="landing-view">
+      <header class="site-header">
+        <div class="brand">
+          <div class="brand-mark">TS</div>
+          <div>
+            <strong>Tree Size Preview</strong>
+            <div>One repo, shared runtime, browser demo for both VS Code extensions.</div>
+          </div>
+        </div>
+        <div class="site-actions">
+          <button id="hero-enter-lab-btn" class="primary-link" type="button">Enter Preview Lab</button>
           <a class="secondary-link" href="https://github.com/aruanoguate/file-tree-size">View Repository</a>
         </div>
-      </article>
+      </header>
 
-      <aside class="hero-products">
-        <article class="product-card active" data-product-card="json">
-          <img src="./assets/json-icon.png" alt="JSON Tree Size icon" />
-          <div>
-            <h2>JSON Tree Size</h2>
-            <p>Measure nested objects and arrays, rank the heaviest keys, and jump to the exact source position.</p>
-            <div class="product-links">
-              <a class="primary-link" href="#preview-lab" data-preview-format="json">Preview JSON</a>
-              <a class="product-link" href="https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.json-treesize">Marketplace</a>
-            </div>
+      <section class="hero">
+        <article class="hero-copy">
+          <span class="eyebrow">Landing Page</span>
+          <h1>Inspect payload weight before you open VS Code.</h1>
+          <p>
+            The public site is now a proper entry point instead of a long single screen. Start from the landing page,
+            then move into a focused preview lab where you can pick a format, load a sample or your own file, and inspect the tree interactively.
+          </p>
+          <p>
+            The JSON and XML experiences still reuse the same parser and shared browser UI that power the extensions, so the demo stays aligned with the real product.
+          </p>
+          <div class="cta-row">
+            <button class="primary-link" type="button" data-open-lab-format="json">Open JSON Lab</button>
+            <button class="secondary-link" type="button" data-open-lab-format="xml">Open XML Lab</button>
           </div>
         </article>
 
-        <article class="product-card" data-product-card="xml">
-          <img src="./assets/xml-icon.svg" alt="XML Tree Size icon" />
-          <div>
-            <h2>XML Tree Size</h2>
-            <p>Inspect elements, attributes, CDATA, and text nodes with the same ranked tree and detail drill-down.</p>
-            <div class="product-links">
-              <a class="primary-link" href="#preview-lab" data-preview-format="xml">Preview XML</a>
-              <a class="product-link" href="https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.xml-tree-size">Marketplace</a>
-            </div>
+        <aside class="hero-products" aria-label="Product preview options">
+          <div class="hero-products-header">
+            <h2>Choose the analyzer you want to preview</h2>
+            <p>Both products now sit side by side on the landing page, with consistent call-to-action styling for preview, marketplace, and repository links.</p>
           </div>
-        </article>
-      </aside>
+
+          <div class="product-grid">
+            <article class="product-card active" data-product-card="json">
+              <div class="product-icon-wrap">
+                <img src="./assets/json-icon.png" alt="JSON Tree Size icon" />
+                <span class="product-badge">Objects, arrays, source map</span>
+              </div>
+              <div>
+                <h2>JSON Tree Size</h2>
+                <p>Measure nested objects and arrays, rank the heaviest keys, and jump to the exact source position.</p>
+              </div>
+              <div class="product-links">
+                <button class="primary-link" type="button" data-open-lab-format="json">Preview JSON</button>
+                <a class="marketplace-link" href="https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.json-treesize">View Marketplace</a>
+                <a class="marketplace-link" href="https://github.com/aruanoguate/file-tree-size">Open Repository</a>
+              </div>
+            </article>
+
+            <article class="product-card" data-product-card="xml">
+              <div class="product-icon-wrap">
+                <img src="./assets/xml-icon.svg" alt="XML Tree Size icon" />
+                <span class="product-badge">Elements, attributes, CDATA</span>
+              </div>
+              <div>
+                <h2>XML Tree Size</h2>
+                <p>Inspect elements, attributes, CDATA, and text nodes with the same ranked tree and detail drill-down.</p>
+              </div>
+              <div class="product-links">
+                <button class="primary-link" type="button" data-open-lab-format="xml">Preview XML</button>
+                <a class="marketplace-link" href="https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.xml-tree-size">View Marketplace</a>
+                <a class="marketplace-link" href="https://github.com/aruanoguate/file-tree-size">Open Repository</a>
+              </div>
+            </article>
+          </div>
+        </aside>
+      </section>
     </section>
 
-    <section id="preview-lab" class="lab-shell">
+    <section id="lab-view" class="lab-shell hidden">
+      <div class="lab-topbar">
+        <button id="back-home-btn" class="back-button" type="button">← Back to landing</button>
+        <div class="lab-path">Landing / Preview Lab / <span id="current-format-label">JSON Tree Size</span></div>
+      </div>
+
       <div class="lab-header">
         <div>
           <h2>Preview Lab</h2>
-          <p>Switch formats, upload your own file, or load the bundled sample payloads. The tree and source preview stay in sync.</p>
+          <p>This is the focused workspace: choose the format, load a sample or your own file, then inspect the tree and source side by side.</p>
+          <div class="step-strip">
+            <span class="step-chip">1. Choose format</span>
+            <span class="step-chip">2. Load sample or upload</span>
+            <span class="step-chip">3. Inspect tree and source</span>
+          </div>
         </div>
       </div>
 
@@ -757,7 +919,7 @@
           </div>
         </section>
 
-        <aside class="source-pane">
+        <aside class="source-pane" aria-label="Source preview pane">
           <div class="source-header">
             <h2 id="source-title">Source Preview</h2>
             <p id="source-meta">Load a demo or upload a file to inspect the original payload.</p>
