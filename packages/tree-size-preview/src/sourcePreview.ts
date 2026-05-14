@@ -23,20 +23,32 @@ export function buildSourcePreview(
   const allLines = normalized.split('\n');
   const totalLines = allLines.length;
 
-  if (activeLine !== null && activeLine >= 0 && activeLine < totalLines) {
-    const startLine = Math.max(activeLine - contextRadius, 0);
-    const endLine = Math.min(activeLine + contextRadius + 1, totalLines);
-    return {
-      totalLines,
-      startLine,
-      activeLine,
-      lines: allLines.slice(startLine, endLine).map((line, index) => ({
-        lineNumber: startLine + index + 1,
-        text: line,
-      })),
-    };
+  if (activeLine === null) {
+    return buildDefaultPreviewWindow(allLines, totalLines, defaultMaxLines);
   }
 
+  if (activeLine < 0 || activeLine >= totalLines) {
+    return buildDefaultPreviewWindow(allLines, totalLines, defaultMaxLines);
+  }
+
+  const startLine = Math.max(activeLine - contextRadius, 0);
+  const endLine = Math.min(activeLine + contextRadius + 1, totalLines);
+  return {
+    totalLines,
+    startLine,
+    activeLine,
+    lines: allLines.slice(startLine, endLine).map((line, index) => ({
+      lineNumber: startLine + index + 1,
+      text: line,
+    })),
+  };
+}
+
+function buildDefaultPreviewWindow(
+  allLines: string[],
+  totalLines: number,
+  defaultMaxLines: number
+): SourcePreviewWindow {
   const endLine = Math.min(defaultMaxLines, totalLines);
   return {
     totalLines,

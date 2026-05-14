@@ -8,6 +8,14 @@ export interface TreeSizeWebviewHost {
   onMessage(listener: (msg: ExtensionToWebviewMessage) => void): void;
 }
 
+function show(el: HTMLElement): void {
+  el.classList.remove('hidden');
+}
+
+function hide(el: HTMLElement): void {
+  el.classList.add('hidden');
+}
+
 /**
  * Starts the shared tree-size webview UI against an injected host bridge.
  * The host can be VS Code, a browser preview page, or a test double.
@@ -299,7 +307,4 @@ export function createTreeSizeWebviewApp(
     target.classList.add('selected');
     target.scrollIntoView({ block: 'nearest' });
   }
-
-  function show(el: HTMLElement): void { el.classList.remove('hidden'); }
-  function hide(el: HTMLElement): void { el.classList.add('hidden'); }
 }

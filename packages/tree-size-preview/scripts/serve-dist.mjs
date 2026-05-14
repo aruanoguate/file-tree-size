@@ -19,7 +19,8 @@ const mimeTypes = {
 };
 
 function resolvePath(urlPath) {
-  const normalized = urlPath === '/' ? '/index.html' : urlPath;
+  const pathname = new URL(urlPath, 'http://localhost').pathname;
+  const normalized = pathname === '/' ? '/index.html' : pathname;
   return path.join(distDir, normalized);
 }
 
