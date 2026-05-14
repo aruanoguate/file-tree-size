@@ -38,6 +38,10 @@ async function writeStaticFiles() {
     path.join(packageRoot, 'src', 'assets', 'favicon.ico'),
     path.join(distDir, 'assets', 'favicon.ico')
   );
+  await copyFile(
+    path.join(packageRoot, 'src', 'assets', 'ar-icon.png'),
+    path.join(distDir, 'assets', 'ar-icon.png')
+  );
   await fs.writeFile(path.join(distDir, '.nojekyll'), '', 'utf8');
 }
 
