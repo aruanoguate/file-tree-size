@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["ES2021", "DOM", "DOM.Iterable", "WebWorker"],
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "types": ["jest", "node"]
+  },
+  "include": [
+    "src/**/*",
+    "tests/**/*",
+    "../tree-size-core/src/**/*",
+    "../json-tree-size/src/**/*",
+    "../xml-tree-size/src/**/*"
+  ],
+  "exclude": ["node_modules"]
+}

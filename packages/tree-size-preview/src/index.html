@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tree Size Preview Lab</title>
+  <style>
+    :root {
+      --page-bg: #f6f3ee;
+      --surface: rgba(255, 255, 255, 0.82);
+      --surface-strong: #ffffff;
+      --text: #14213d;
+      --muted: #5f6b80;
+      --border: rgba(20, 33, 61, 0.14);
+      --shadow: 0 24px 60px rgba(20, 33, 61, 0.12);
+      --json-accent: #4a9eda;
+      --xml-accent: #e8832a;
+      --active-accent: var(--json-accent);
+      --active-accent-soft: rgba(74, 158, 218, 0.16);
+      --button-text: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(74, 158, 218, 0.15), transparent 28%),
+        radial-gradient(circle at top right, rgba(232, 131, 42, 0.14), transparent 24%),
+        linear-gradient(180deg, #fffdf8 0%, var(--page-bg) 100%);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-shell {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 28px;
+      align-items: stretch;
+      margin-bottom: 28px;
+    }
+
+    .hero-copy,
+    .hero-products,
+    .lab-shell,
+    .source-pane {
+      background: var(--surface);
+      backdrop-filter: blur(18px);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -120px auto;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, var(--active-accent-soft), transparent 72%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(20, 33, 61, 0.06);
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 20px 0 14px;
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+      max-width: 9ch;
+    }
+
+    .hero-copy p {
+      max-width: 62ch;
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 1.04rem;
+      line-height: 1.65;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .primary-link,
+    .secondary-link,
+    .format-button,
+    .action-button,
+    .upload-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      padding: 12px 18px;
+      font: inherit;
+      cursor: pointer;
+      transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+    }
+
+    .primary-link,
+    .action-button,
+    .upload-button {
+      background: var(--active-accent);
+      color: var(--button-text);
+      box-shadow: 0 16px 32px color-mix(in srgb, var(--active-accent) 35%, transparent);
+    }
+
+    .secondary-link,
+    .format-button {
+      background: rgba(255, 255, 255, 0.72);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .primary-link:hover,
+    .secondary-link:hover,
+    .format-button:hover,
+    .action-button:hover,
+    .upload-button:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero-products {
+      padding: 24px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .product-card {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 16px;
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.86);
+    }
+
+    .product-card.active {
+      border-color: color-mix(in srgb, var(--active-accent) 55%, white);
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--active-accent) 18%, transparent);
+    }
+
+    .product-card img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      border-radius: 18px;
+      background: #f7f7f7;
+      padding: 12px;
+      border: 1px solid rgba(20, 33, 61, 0.08);
+    }
+
+    .product-card h2 {
+      margin: 0 0 6px;
+      font-size: 1.2rem;
+    }
+
+    .product-card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 0.96rem;
+    }
+
+    .product-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .product-link {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .lab-shell {
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .lab-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .lab-header h2 {
+      margin: 0;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      letter-spacing: -0.03em;
+    }
+
+    .lab-header p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      max-width: 60ch;
+      line-height: 1.6;
+    }
+
+    .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .format-switch {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .format-button.active {
+      background: var(--active-accent-soft);
+      border-color: color-mix(in srgb, var(--active-accent) 32%, transparent);
+      color: var(--text);
+    }
+
+    .upload-button input {
+      display: none;
+    }
+
+    .status-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-bottom: 18px;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.8fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .preview-pane,
+    .source-pane {
+      min-height: 680px;
+      overflow: hidden;
+    }
+
+    .preview-pane {
+      background: var(--surface-strong);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+    }
+
+    .preview-frame {
+      height: 100%;
+      min-height: 680px;
+    }
+
+    .hidden { display: none !important; }
+
+    .loading-state,
+    .error-state {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      height: 680px;
+      padding: 24px;
+    }
+
+    .loading-state { color: var(--muted); }
+    .error-state { color: #b03a2e; }
+
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(20, 33, 61, 0.2);
+      border-top-color: var(--active-accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .split {
+      display: flex;
+      height: 680px;
+      overflow: hidden;
+    }
+
+    .pane {
+      overflow-y: auto;
+      background: var(--surface-strong);
+    }
+
+    .tree-pane-shell {
+      width: 46%;
+      min-width: 220px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tree-toolbar {
+      display: flex;
+      gap: 8px;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(20, 33, 61, 0.02);
+    }
+
+    .tree-toolbar button,
+    .goto-btn {
+      font: inherit;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 120ms ease;
+    }
+
+    .tree-toolbar button {
+      font-size: 0.82rem;
+      padding: 8px 12px;
+      background: rgba(20, 33, 61, 0.08);
+      color: var(--text);
+    }
+
+    .tree-toolbar button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .tree-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+    }
+
+    .detail-pane {
+      flex: 1;
+      padding: 16px 18px;
+      overflow-y: auto;
+    }
+
+    .detail-placeholder {
+      display: grid;
+      place-items: center;
+      height: 100%;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .tree-row {
+      display: flex;
+      flex-direction: column;
+      padding: 4px 6px;
+      border-radius: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .tree-row:hover { background: rgba(20, 33, 61, 0.06); }
+    .tree-row.selected {
+      background: var(--active-accent-soft);
+    }
+
+    .tree-row-top {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tree-toggle {
+      width: 14px;
+      flex-shrink: 0;
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .tree-key {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .tree-size {
+      font-size: 0.82em;
+      white-space: nowrap;
+      margin-left: 4px;
+    }
+
+    .tree-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 3px;
+    }
+
+    .tree-mini-bar-track,
+    .bar-track {
+      background: rgba(20, 33, 61, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .tree-mini-bar-track {
+      flex: 1;
+      height: 6px;
+    }
+
+    .tree-mini-bar-fill,
+    .bar-fill {
+      height: 100%;
+      border-radius: inherit;
+    }
+
+    .tree-pct {
+      font-size: 0.75em;
+      color: var(--muted);
+      white-space: nowrap;
+      min-width: 40px;
+      text-align: right;
+    }
+
+    .tree-children {
+      margin-left: 16px;
+      padding-left: 8px;
+      border-left: 1px solid rgba(20, 33, 61, 0.08);
+    }
+
+    .detail-header h2 {
+      margin: 0 0 8px;
+      font-size: 1.4rem;
+    }
+
+    .detail-meta {
+      color: var(--muted);
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    .bar-row {
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(20, 33, 61, 0.08);
+      background: rgba(20, 33, 61, 0.02);
+      margin-bottom: 10px;
+    }
+
+    .bar-row-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.92rem;
+      margin-bottom: 8px;
+    }
+
+    .bar-key {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .bar-meta {
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .bar-track {
+      height: 12px;
+    }
+
+    .goto-btn {
+      margin-top: 18px;
+      padding: 10px 14px;
+      background: rgba(20, 33, 61, 0.08);
+      color: var(--text);
+    }
+
+    .source-pane {
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      background: #101828;
+      color: #e5ecf4;
+    }
+
+    .source-header {
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .source-header h2 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+    }
+
+    .source-header p,
+    .source-header span {
+      color: rgba(229, 236, 244, 0.7);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .source-view {
+      margin: 0;
+      padding: 14px 0;
+      overflow: auto;
+      font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .source-line {
+      display: grid;
+      grid-template-columns: 52px minmax(0, 1fr);
+      gap: 14px;
+      padding: 0 18px;
+      white-space: pre;
+    }
+
+    .source-line.active {
+      background: rgba(74, 158, 218, 0.18);
+    }
+
+    .source-line-number {
+      text-align: right;
+      color: rgba(229, 236, 244, 0.45);
+      user-select: none;
+    }
+
+    .source-line-text {
+      overflow-x: auto;
+    }
+
+    @media (max-width: 1120px) {
+      .hero,
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-pane,
+      .source-pane {
+        min-height: 560px;
+      }
+
+      .split,
+      .preview-frame {
+        height: 560px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page-shell {
+        padding: 18px 12px 36px;
+      }
+
+      .hero-copy,
+      .hero-products,
+      .lab-shell {
+        border-radius: 24px;
+      }
+
+      .hero-copy,
+      .hero-products,
+      .lab-shell {
+        padding: 18px;
+      }
+
+      .split {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .tree-pane-shell {
+        width: 100%;
+        min-width: 0;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .preview-frame,
+      .preview-pane,
+      .source-pane {
+        min-height: 420px;
+      }
+
+      .loading-state,
+      .error-state {
+        height: 420px;
+      }
+
+      .source-line {
+        grid-template-columns: 40px minmax(0, 1fr);
+        gap: 10px;
+        padding: 0 12px;
+      }
+    }
+  </style>
+</head>
+<body
+  data-l10n-expanding="Expanding…"
+  data-l10n-collapsing="Collapsing…"
+  data-l10n-error="Error: __MSG__"
+  data-l10n-total="total"
+  data-l10n-items="items"
+  data-l10n-keys="keys"
+  data-l10n-open-in-editor="Reveal in source ↗"
+>
+  <div class="page-shell">
+    <section class="hero">
+      <article class="hero-copy">
+        <span class="eyebrow">GitHub Pages Preview</span>
+        <h1>Inspect payload weight before you install the extension.</h1>
+        <p>
+          This preview lab runs the same tree-size analysis logic used by the VS Code extensions.
+          Load a JSON or XML file in the browser, inspect the weighted tree, and reveal matching source lines instantly.
+        </p>
+        <p>
+          The repo now owns one shared codebase for the extensions and the public demo, so local development,
+          unit tests, and deployment stay in the same pipeline.
+        </p>
+        <div class="cta-row">
+          <a class="primary-link" href="#preview-lab">Open Live Preview</a>
+          <a class="secondary-link" href="https://github.com/aruanoguate/file-tree-size">View Repository</a>
+        </div>
+      </article>
+
+      <aside class="hero-products">
+        <article class="product-card active" data-product-card="json">
+          <img src="./assets/json-icon.png" alt="JSON Tree Size icon" />
+          <div>
+            <h2>JSON Tree Size</h2>
+            <p>Measure nested objects and arrays, rank the heaviest keys, and jump to the exact source position.</p>
+            <div class="product-links">
+              <a class="primary-link" href="#preview-lab" data-preview-format="json">Preview JSON</a>
+              <a class="product-link" href="https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.json-treesize">Marketplace</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-product-card="xml">
+          <img src="./assets/xml-icon.svg" alt="XML Tree Size icon" />
+          <div>
+            <h2>XML Tree Size</h2>
+            <p>Inspect elements, attributes, CDATA, and text nodes with the same ranked tree and detail drill-down.</p>
+            <div class="product-links">
+              <a class="primary-link" href="#preview-lab" data-preview-format="xml">Preview XML</a>
+              <a class="product-link" href="https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.xml-tree-size">Marketplace</a>
+            </div>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section id="preview-lab" class="lab-shell">
+      <div class="lab-header">
+        <div>
+          <h2>Preview Lab</h2>
+          <p>Switch formats, upload your own file, or load the bundled sample payloads. The tree and source preview stay in sync.</p>
+        </div>
+      </div>
+
+      <div class="control-row">
+        <div class="format-switch">
+          <button id="format-json" class="format-button" type="button" data-format="json">JSON Tree Size</button>
+          <button id="format-xml" class="format-button" type="button" data-format="xml">XML Tree Size</button>
+        </div>
+
+        <label class="upload-button" for="file-input">
+          Upload file
+          <input id="file-input" type="file" accept=".json,.xml,application/json,application/xml,text/xml" />
+        </label>
+
+        <button id="load-demo-btn" class="action-button" type="button">Load sample</button>
+      </div>
+
+      <div class="status-row">
+        <span id="status-text">Booting preview…</span>
+        <span id="file-meta">No file loaded yet.</span>
+      </div>
+
+      <div class="workspace">
+        <section class="preview-pane">
+          <div class="preview-frame">
+            <div id="loading" class="loading-state hidden">
+              <div class="spinner"></div>
+              <span>Analyzing payload…</span>
+            </div>
+
+            <div id="error" class="error-state hidden"></div>
+
+            <div id="split" class="split hidden">
+              <div class="pane tree-pane-shell">
+                <div class="tree-toolbar">
+                  <button id="expand-all-btn" type="button">Expand all</button>
+                  <button id="collapse-all-btn" type="button">Collapse all</button>
+                </div>
+                <div id="tree-pane" class="tree-scroll"></div>
+              </div>
+
+              <div class="pane detail-pane">
+                <div id="detail-placeholder" class="detail-placeholder">
+                  <div>
+                    <strong>Select a node</strong>
+                    <div>The detail view will show relative weight, siblings, and a source jump action.</div>
+                  </div>
+                </div>
+                <div id="detail-content" class="hidden"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="source-pane">
+          <div class="source-header">
+            <h2 id="source-title">Source Preview</h2>
+            <p id="source-meta">Load a demo or upload a file to inspect the original payload.</p>
+          </div>
+          <pre id="source-view" class="source-view"></pre>
+        </aside>
+      </div>
+    </section>
+  </div>
+
+  <script src="./site.js"></script>
+</body>
+</html>

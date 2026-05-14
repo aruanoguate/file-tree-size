@@ -25,6 +25,17 @@ Same experience for XML and SOAP payloads — elements, attributes, text, and CD
 
 Install from the [Marketplace](https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.xml-tree-size) or search **"XML Tree Size"** in VS Code.
 
+## Preview Site
+
+This repo now also contains a static browser preview under `packages/tree-size-preview/`.
+
+- Landing page plus live JSON/XML preview share the same parser and tree UI logic as the VS Code extensions.
+- GitHub Pages deployment is handled by `.github/workflows/pages-preview.yml`.
+- Local preview workflow:
+	- `npm run preview:build`
+	- `npm run preview:serve`
+	- optional live rebuilds in a second terminal: `npm run preview:watch`
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, architecture overview, and release process.
