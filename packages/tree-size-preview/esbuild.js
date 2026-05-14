@@ -34,6 +34,10 @@ async function writeStaticFiles() {
     path.join(packageRoot, '..', 'xml-tree-size', 'docs', 'demo.xml'),
     path.join(distDir, 'assets', 'demo.xml')
   );
+  await copyFile(
+    path.join(packageRoot, 'src', 'assets', 'favicon.ico'),
+    path.join(distDir, 'assets', 'favicon.ico')
+  );
   await fs.writeFile(path.join(distDir, '.nojekyll'), '', 'utf8');
 }
 
