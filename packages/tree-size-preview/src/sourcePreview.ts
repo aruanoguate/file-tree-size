@@ -19,7 +19,7 @@ export function buildSourcePreview(
   contextRadius = 40,
   defaultMaxLines = 160
 ): SourcePreviewWindow {
-  const normalized = text.replace(/\r\n/g, '\n');
+  const normalized = text.replaceAll('\r\n', '\n');
   const allLines = normalized.split('\n');
   const totalLines = allLines.length;
 
@@ -63,10 +63,10 @@ function buildDefaultPreviewWindow(
 
 export function formatSourceMeta(preview: SourcePreviewWindow, activeCol: number | null): string {
   const previewEndLine = preview.startLine + preview.lines.length;
-  if (preview.activeLine !== null) {
-    const columnText = activeCol !== null ? `, col ${activeCol + 1}` : '';
-    return `Line ${preview.activeLine + 1}${columnText} · showing lines ${preview.startLine + 1}-${previewEndLine} of ${preview.totalLines}`;
+  if (preview.activeLine === null) {
+    return `Showing lines 1-${previewEndLine} of ${preview.totalLines}`;
   }
 
-  return `Showing lines 1-${previewEndLine} of ${preview.totalLines}`;
+  const columnText = activeCol === null ? '' : `, col ${activeCol + 1}`;
+  return `Line ${preview.activeLine + 1}${columnText} · showing lines ${preview.startLine + 1}-${previewEndLine} of ${preview.totalLines}`;
 }

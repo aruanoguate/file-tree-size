@@ -5,7 +5,7 @@ interface ParseRequest {
   text: string;
 }
 
-const workerScope = self as DedicatedWorkerGlobalScope;
+const workerScope = globalThis as DedicatedWorkerGlobalScope;
 
 workerScope.addEventListener('message', (event: MessageEvent<ParseRequest>) => {
   try {
