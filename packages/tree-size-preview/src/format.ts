@@ -9,6 +9,8 @@ export interface PreviewFormatConfig {
   demoPath: string;
   demoFileName: string;
   workerPath: string;
+  marketplaceUrl: string;
+  openVsxUrl: string;
 }
 
 export const PREVIEW_FORMATS: Record<PreviewFormat, PreviewFormatConfig> = {
@@ -19,6 +21,8 @@ export const PREVIEW_FORMATS: Record<PreviewFormat, PreviewFormatConfig> = {
     demoPath: './assets/demo.json',
     demoFileName: 'demo.json',
     workerPath: './workers/json-worker.js',
+    marketplaceUrl: 'https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.json-treesize',
+    openVsxUrl: 'https://open-vsx.org/extension/AlvaroEnriqueRuano/json-treesize',
   },
   xml: {
     label: 'XML Tree Size',
@@ -27,6 +31,8 @@ export const PREVIEW_FORMATS: Record<PreviewFormat, PreviewFormatConfig> = {
     demoPath: './assets/demo.xml',
     demoFileName: 'demo.xml',
     workerPath: './workers/xml-worker.js',
+    marketplaceUrl: 'https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.xml-tree-size',
+    openVsxUrl: 'https://open-vsx.org/extension/AlvaroEnriqueRuano/xml-tree-size',
   },
 };
 

@@ -44,6 +44,8 @@ const loadDemoBtn = getRequiredElement<HTMLButtonElement>('load-demo-btn');
 const statusText = getRequiredElement<HTMLElement>('status-text');
 const fileMeta = getRequiredElement<HTMLElement>('file-meta');
 const currentFormatLabel = getRequiredElement<HTMLElement>('current-format-label');
+const labMarketplaceLink = getRequiredElement<HTMLAnchorElement>('lab-marketplace-link');
+const labOpenVsxLink = getRequiredElement<HTMLAnchorElement>('lab-openvsx-link');
 const sourceTitle = getRequiredElement<HTMLElement>('source-title');
 const sourceMeta = getRequiredElement<HTMLElement>('source-meta');
 const sourceView = getRequiredElement<HTMLElement>('source-view');
@@ -116,6 +118,8 @@ function applyFormatUi(): void {
   fileInput.accept = config.accept;
   loadDemoBtn.textContent = `Load ${config.label} sample`;
   currentFormatLabel.textContent = config.label;
+  labMarketplaceLink.href = config.marketplaceUrl;
+  labOpenVsxLink.href = config.openVsxUrl;
   if (!state.currentFileName) {
     statusText.textContent = `Ready to preview ${config.label}.`;
   }
