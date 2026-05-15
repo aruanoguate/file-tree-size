@@ -2,6 +2,9 @@ node_modules/
 dist/
 *.vsix
 
+# Per-package lock files (only root package-lock.json matters in workspaces)
+packages/*/package-lock.json
+
 # Claude Code local config (may contain bypass permissions)
 .claude/settings.local.json
 

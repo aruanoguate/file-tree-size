@@ -60,7 +60,14 @@ console.log(`\n✔ Version bumped to ${newVersion}`);
 // 4. Sync root lock file
 run('npm install --package-lock-only');
 
-// 5. Stage, commit, tag, push
+// 5. Discard any per-package lock file that npm version may have created/modified
+const innerLock = path.join(pkg.dir, 'package-lock.json');
+const fs = require('fs');
+if (fs.existsSync(innerLock)) {
+  execSync(`git checkout -- ${innerLock} 2>/dev/null || true`);
+}
+
+// 6. Stage, commit, tag, push
 run(`git add ${pkg.dir}/package.json package-lock.json`);
 run(`git commit -m "Release ${pkg.name} ${newVersion}"`);
 run(`git tag ${tag}`);
