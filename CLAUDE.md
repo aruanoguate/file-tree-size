@@ -28,15 +28,19 @@ packages/
 **Deployment is fully automated via GitHub Actions.**
 
 When asked to "deploy" or "release":
-1. Run the appropriate npm release script from the repo root:
+1. Run the appropriate npm release script **from the repo root**:
    - JSON: `npm run release:json:patch`, `release:json:minor`, or `release:json:major`
    - XML: `npm run release:xml:patch`, `release:xml:minor`, or `release:xml:major`
-2. That's it — the script bumps the version, commits, tags, and pushes
+2. That's it — `scripts/release.js` handles the full flow:
+   - Validates a clean working tree
+   - Bumps the version (runs tests + compile via `preversion` hook)
+   - Syncs the root `package-lock.json`
+   - Commits, tags (`json-v*` / `xml-v*`), and pushes
 3. GitHub Actions picks up the tag and publishes to the VS Code Marketplace automatically
 
-JSON tags use the `json-v*` prefix. XML tags use the `xml-v*` prefix.
-
 **Never** run `vsce:publish` or attempt a manual marketplace publish.
+
+**Never** run `npm version` directly inside a package directory — the monorepo root lock file won't be staged, the commit will be incomplete, and the push will silently do nothing. Always use the root `npm run release:*` scripts.
 
 ## Git Commit Hygiene
 

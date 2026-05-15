@@ -16,11 +16,11 @@
     "preview:build": "npm --prefix packages/tree-size-preview run compile",
     "preview:watch": "npm --prefix packages/tree-size-preview run watch",
     "preview:serve": "npm --prefix packages/tree-size-preview run serve",
-    "release:json:patch": "npm --prefix packages/json-tree-size run release:patch",
-    "release:json:minor": "npm --prefix packages/json-tree-size run release:minor",
-    "release:json:major": "npm --prefix packages/json-tree-size run release:major",
-    "release:xml:patch": "npm --prefix packages/xml-tree-size run release:patch",
-    "release:xml:minor": "npm --prefix packages/xml-tree-size run release:minor",
-    "release:xml:major": "npm --prefix packages/xml-tree-size run release:major"
+    "release:json:patch": "node scripts/release.js json patch",
+    "release:json:minor": "node scripts/release.js json minor",
+    "release:json:major": "node scripts/release.js json major",
+    "release:xml:patch": "node scripts/release.js xml patch",
+    "release:xml:minor": "node scripts/release.js xml minor",
+    "release:xml:major": "node scripts/release.js xml major"
   }
 }
