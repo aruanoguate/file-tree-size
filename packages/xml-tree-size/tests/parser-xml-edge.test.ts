@@ -4,7 +4,7 @@ describe('buildSizeTree edge branches', () => {
     jest.dontMock('sax');
   });
 
-  it('ignores empty text nodes and tolerates extra close events', () => {
+  it('ignores empty and whitespace-only text nodes and tolerates extra close events', () => {
     jest.isolateModules(() => {
       const parserInstance: Record<string, unknown> = {
         line: 4,
@@ -21,6 +21,7 @@ describe('buildSizeTree edge branches', () => {
       parserInstance.write = jest.fn(() => parserInstance);
       parserInstance.close = jest.fn(() => {
         (parserInstance.ontext as ((text: string) => void) | undefined)?.('');
+        (parserInstance.ontext as ((text: string) => void) | undefined)?.('   \n\t  ');
         (parserInstance.oncdata as ((text: string) => void) | undefined)?.('payload');
         (parserInstance.onclosetag as (() => void) | undefined)?.();
         (parserInstance.onclosetag as (() => void) | undefined)?.();

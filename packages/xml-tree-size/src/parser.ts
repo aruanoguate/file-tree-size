@@ -48,7 +48,7 @@ export function buildSizeTree(xmlText: string): SizeNode {
   };
 
   parser.ontext = (text) => {
-    if (text.length === 0) {
+    if (text.trim().length === 0) {
       return;
     }
     const line = parser.line;

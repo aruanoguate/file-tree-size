@@ -24,6 +24,37 @@ describe('buildSizeTree (XML)', () => {
     expect(node?.children.some((n) => n.key === '#text')).toBe(true);
   });
 
+  it('excludes whitespace-only text nodes between child elements', () => {
+    const xml = [
+      '<root>',
+      '  <citation key="ref1">',
+      '    <unstructured_citation>Housecat, M.</unstructured_citation>',
+      '    <doi>10.32013/4859104</doi>',
+      '  </citation>',
+      '</root>',
+    ].join('\n');
+    const tree = buildSizeTree(xml);
+    const citation = tree.children[0].children.find((n) => n.key === 'citation');
+
+    expect(citation).toBeDefined();
+    const textNodes = citation?.children.filter((n) => n.key === '#text') ?? [];
+    expect(textNodes).toHaveLength(0);
+
+    expect(citation?.children.some((n) => n.key === 'unstructured_citation')).toBe(true);
+    expect(citation?.children.some((n) => n.key === 'doi')).toBe(true);
+  });
+
+  it('preserves meaningful text nodes that contain non-whitespace', () => {
+    const xml = '<root><msg>  hello world  </msg></root>';
+    const tree = buildSizeTree(xml);
+    const msg = tree.children[0].children.find((n) => n.key === 'msg');
+
+    expect(msg).toBeDefined();
+    const textNodes = msg?.children.filter((n) => n.key === '#text') ?? [];
+    expect(textNodes).toHaveLength(1);
+    expect(textNodes[0].size).toBe('  hello world  '.length);
+  });
+
   it('creates CDATA nodes', () => {
     const xml = '<root><notes><![CDATA[some <xml> payload]]></notes></root>';
     const tree = buildSizeTree(xml);
