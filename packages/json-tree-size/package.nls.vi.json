@@ -1,6 +1,6 @@
 {
   "displayName": "JSON Tree Size",
-  "description": "Trực quan hóa nguyên nhân phình JSON — trình duyệt cây tương tác với thanh kích thước, bản đồ nhiệt và điều hướng đến mã nguồn chỉ bằng một cú nhấp.",
+  "description": "Công cụ phân tích và trực quan hóa kích thước file JSON — tìm nguyên nhân phình JSON với trình duyệt cây tương tác, bản đồ nhiệt, thanh kích thước và điều hướng đến mã nguồn chỉ bằng một cú nhấp. 100% cục bộ, không theo dõi. Dùng thử demo trực tuyến — không cần cài đặt.",
   "command.analyze.title": "JSON Tree Size: Phân tích",
   "config.title": "JSON Tree Size",
   "config.baseColor.description": "Màu cơ sở cho bản đồ nhiệt kích thước (hex, vd: #e06c8a). Để trống để dùng màu xanh mặc định."

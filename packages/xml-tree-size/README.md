@@ -1,4 +1,4 @@
-# XML Tree Size
+# XML Tree Size — XML & SOAP Payload Analyzer for VS Code
 
 [![Visual Studio Marketplace](https://vsmarketplacebadges.dev/version/AlvaroEnriqueRuano.xml-tree-size.svg)](https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.xml-tree-size)
 [![Installs](https://vsmarketplacebadges.dev/installs/AlvaroEnriqueRuano.xml-tree-size.svg)](https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.xml-tree-size)
@@ -8,17 +8,19 @@
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=aruanoguate_file-tree-size&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=aruanoguate_file-tree-size)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=aruanoguate_file-tree-size&metric=coverage)](https://sonarcloud.io/summary/new_code?id=aruanoguate_file-tree-size)
 
+> **TL;DR** — Right-click any `.xml` file → instant tree-map showing which elements eat the most bytes. [**Try the live demo**](https://aruanoguate.github.io/file-tree-size/) in your browser first — zero install, zero sign-up.
+
 **Ever wondered what's bloating that SOAP envelope or XML config?**
 
 XML Tree Size gives you the same "what's eating my disk?" experience as [TreeSize](https://www.jam-software.com/treesize) or [WinDirStat](https://windirstat.net/) — but for XML files, right inside VS Code. No CLI tools, no pasting into online formatters, no leaving your editor.
 
-Built by a developer, for developers. Free, open-source, no telemetry. Just right-click an `.xml` file and see where the bytes are.
+Built by a developer, for developers. Free, open-source, no telemetry. Your data never leaves your machine.
 
 ![XML Tree Size — split view with tree explorer and detail bar chart](https://raw.githubusercontent.com/aruanoguate/file-tree-size/main/packages/xml-tree-size/docs/screenshot.png)
 
 ## 🚀 Try Before You Install
 
-Not sure yet? **[Try the live demo](https://aruanoguate.github.io/file-tree-size/)** right in your browser — no install, no sign-up, no commitment. Load a sample file or paste your own XML and explore the full tree-size experience instantly.
+Not ready to commit? **[Try the live demo](https://aruanoguate.github.io/file-tree-size/)** right in your browser — no install, no sign-up, no commitment. Load a sample file or paste your own XML and explore the full tree-size experience instantly. When you're convinced, come back and install with one click.
 
 ## Why XML Tree Size?
 
@@ -70,6 +72,28 @@ Click nodes in the tree to see their children ranked by size in the detail pane.
 | Setting | Default | Description |
 |---------|---------|-------------|
 | [`xmlTreeSize.baseColor`](vscode://settings/xmlTreeSize.baseColor) | `"#e8832a"` | Base color for the size heat map. Opens a native color picker in Settings. Leave empty for the default orange. |
+
+## Common Use Cases
+
+- **SOAP payload optimization** — find which elements dominate your WCF/SOAP envelopes and trim them to cut transfer time
+- **XML config audit** — discover why your Maven POM, Spring config, or XSLT stylesheet grew to megabytes
+- **Web services debugging** — spot verbose WSDL responses, oversized CDATA blocks, or redundant namespace declarations
+- **Data interchange analysis** — visualize EDI-XML, HL7, or industry-standard XML feeds to locate bloat
+- **Log file triage** — quickly locate the heaviest elements in structured XML logs
+
+## Frequently Asked Questions
+
+**Is my data safe?**
+Yes — XML Tree Size runs entirely inside VS Code. Your files are never uploaded, and there is zero telemetry. [Try the live demo](https://aruanoguate.github.io/file-tree-size/) to verify — it runs 100 % in the browser too.
+
+**How does it parse large XML files?**
+It uses a SAX streaming parser, so it never loads the entire DOM into memory. The practical limit is your available memory.
+
+**Does it handle namespaces and CDATA?**
+Yes — elements, attributes, text nodes, CDATA sections, and namespace prefixes are all displayed in the tree.
+
+**Can I use it with JSON too?**
+Yes — check out the companion extension **[JSON Tree Size](https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.json-treesize)** for JSON files.
 
 ## Contributing
 

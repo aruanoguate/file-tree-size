@@ -21,25 +21,36 @@
   "bugs": {
     "url": "https://github.com/aruanoguate/file-tree-size/issues"
   },
-  "homepage": "https://github.com/aruanoguate/file-tree-size/tree/main/packages/xml-tree-size#readme",
+  "homepage": "https://aruanoguate.github.io/file-tree-size/",
   "keywords": [
     "xml",
+    "xml analyzer",
+    "xml viewer",
+    "xml inspector",
+    "xml size",
     "soap",
-    "size",
-    "tree-size",
-    "analyzer",
-    "visualizer",
-    "payload",
-    "live demo",
-    "try online"
+    "soap payload",
+    "file size",
+    "tree size",
+    "tree explorer",
+    "size visualizer",
+    "payload analyzer",
+    "web services",
+    "heatmap",
+    "no telemetry",
+    "privacy",
+    "offline",
+    "live demo"
   ],
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": [
     "Visualization",
-    "Other"
+    "Testing"
   ],
+  "qna": "https://github.com/aruanoguate/file-tree-size/issues",
+  "markdown": "github",
   "activationEvents": [],
   "main": "./dist/extension.js",
   "l10n": "./l10n",

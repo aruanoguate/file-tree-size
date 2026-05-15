@@ -1,6 +1,6 @@
 {
   "displayName": "XML Tree Size",
-  "description": "Visualisez ce qui alourdit votre XML — explorateur interactif avec barres de taille, carte thermique et navigation directe vers le code source.",
+  "description": "Analyseur de payloads XML et SOAP — trouvez ce qui alourdit votre XML avec explorateur interactif, carte thermique, barres de taille et navigation directe vers le code source. 100 % local, sans télémétrie. Essayez la démo en ligne — sans installation.",
   "command.analyze.title": "XML Tree Size : Analyser",
   "config.title": "XML Tree Size",
   "config.baseColor.description": "Couleur de base pour la carte thermique des tailles (hex, ex. #e06c8a). Laissez vide pour utiliser le bleu par défaut."

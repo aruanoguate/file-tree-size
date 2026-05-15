@@ -21,29 +21,36 @@
   "bugs": {
     "url": "https://github.com/aruanoguate/file-tree-size/issues"
   },
-  "homepage": "https://github.com/aruanoguate/file-tree-size/tree/main/packages/json-tree-size#readme",
+  "homepage": "https://aruanoguate.github.io/file-tree-size/",
   "keywords": [
     "json",
-    "size",
-    "tree-size",
-    "tree",
-    "explorer",
-    "analyzer",
-    "visualizer",
-    "disk usage",
-    "file size",
+    "json analyzer",
     "json viewer",
-    "optimization",
-    "live demo",
-    "try online"
+    "json inspector",
+    "json size",
+    "file size",
+    "tree size",
+    "tree explorer",
+    "size visualizer",
+    "payload analyzer",
+    "api response",
+    "performance",
+    "heatmap",
+    "disk usage",
+    "no telemetry",
+    "privacy",
+    "offline",
+    "live demo"
   ],
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": [
     "Visualization",
-    "Other"
+    "Testing"
   ],
+  "qna": "https://github.com/aruanoguate/file-tree-size/issues",
+  "markdown": "github",
   "activationEvents": [],
   "main": "./dist/extension.js",
   "l10n": "./l10n",

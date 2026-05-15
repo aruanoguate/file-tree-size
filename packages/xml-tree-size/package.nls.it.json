@@ -1,6 +1,6 @@
 {
   "displayName": "XML Tree Size",
-  "description": "Scopri cosa gonfia il tuo XML — esploratore ad albero interattivo con barre di dimensione, mappa termica e navigazione diretta al codice sorgente.",
+  "description": "Analizzatore di payload XML e SOAP — scopri cosa gonfia il tuo XML con esploratore ad albero interattivo, mappa termica, barre di dimensione e navigazione diretta al codice sorgente. 100% locale, nessuna telemetria. Prova la demo live — nessuna installazione.",
   "command.analyze.title": "XML Tree Size: Analizza",
   "config.title": "XML Tree Size",
   "config.baseColor.description": "Colore base per la mappa termica delle dimensioni (hex, es. #e06c8a). Lascia vuoto per usare il blu predefinito."

@@ -1,4 +1,4 @@
-# JSON Tree Size
+# JSON Tree Size — JSON File Size Analyzer for VS Code
 
 [![Visual Studio Marketplace](https://vsmarketplacebadges.dev/version/AlvaroEnriqueRuano.json-treesize.svg)](https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.json-treesize)
 [![Installs](https://vsmarketplacebadges.dev/installs/AlvaroEnriqueRuano.json-treesize.svg)](https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.json-treesize)
@@ -8,17 +8,19 @@
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=aruanoguate_file-tree-size&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=aruanoguate_file-tree-size)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=aruanoguate_file-tree-size&metric=coverage)](https://sonarcloud.io/summary/new_code?id=aruanoguate_file-tree-size)
 
+> **TL;DR** — Right-click any `.json` file → instant tree-map showing which keys eat the most bytes. [**Try the live demo**](https://aruanoguate.github.io/file-tree-size/) in your browser first — zero install, zero sign-up.
+
 **Ever wondered what's bloating that 50 MB JSON file?**
 
 JSON Tree Size gives you the same "what's eating my disk?" experience as [TreeSize](https://www.jam-software.com/treesize) or [WinDirStat](https://windirstat.net/) — but for JSON files, right inside VS Code. No CLI tools, no pasting into online formatters, no leaving your editor.
 
-Built by a developer, for developers. Free, open-source, no telemetry. Just right-click a `.json` file and see where the bytes are.
+Built by a developer, for developers. Free, open-source, no telemetry. Your data never leaves your machine.
 
 ![JSON Tree Size — split view with tree explorer and detail bar chart](https://raw.githubusercontent.com/aruanoguate/file-tree-size/main/packages/json-tree-size/docs/screenshot.png)
 
 ## 🚀 Try Before You Install
 
-Not sure yet? **[Try the live demo](https://aruanoguate.github.io/file-tree-size/)** right in your browser — no install, no sign-up, no commitment. Load a sample file or paste your own JSON and explore the full tree-size experience instantly.
+Not ready to commit? **[Try the live demo](https://aruanoguate.github.io/file-tree-size/)** right in your browser — no install, no sign-up, no commitment. Load a sample file or paste your own JSON and explore the full tree-size experience instantly. When you're convinced, come back and install with one click.
 
 ## Why JSON Tree Size?
 
@@ -69,6 +71,28 @@ Click nodes in the tree to see their children ranked by size in the detail pane.
 | Setting | Default | Description |
 |---------|---------|-------------|
 | [`jsonTreeSize.baseColor`](vscode://settings/jsonTreeSize.baseColor) | `"#4a9eda"` | Base color for the size heat map. Opens a native color picker in Settings. Leave empty for the default blue. |
+
+## Common Use Cases
+
+- **API payload optimization** — identify which fields dominate your REST/GraphQL responses and trim them to cut bandwidth
+- **Config file audit** — find why your `package.json`, `tsconfig.json`, or app config ballooned to megabytes
+- **Data pipeline debugging** — spot unexpected array growth or deeply nested objects in ETL output
+- **Bundle analysis** — visualize source maps and build manifests to understand what's adding weight
+- **Log file triage** — quickly locate the verbose keys in structured JSON logs
+
+## Frequently Asked Questions
+
+**Is my data safe?**
+Yes — JSON Tree Size runs entirely inside VS Code. Your files are never uploaded, and there is zero telemetry. [Try the live demo](https://aruanoguate.github.io/file-tree-size/) to verify — it runs 100 % in the browser too.
+
+**How large a file can it handle?**
+Worker thread parsing keeps the editor responsive for files over 50 MB. The practical limit is your available memory.
+
+**Does it work with JSONC / JSON5 / JSON with comments?**
+It parses standard JSON (RFC 8259). Files with trailing commas or comments will show a parse error.
+
+**Can I use it with XML too?**
+Yes — check out the companion extension **[XML Tree Size](https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.xml-tree-size)** for XML and SOAP payloads.
 
 ## Contributing
 
