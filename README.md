@@ -2,6 +2,8 @@
 
 VS Code extensions that show you exactly where size hides in your JSON and XML files — think WinDirStat, but for payloads.
 
+**[Try the live demo](https://aruanoguate.github.io/file-tree-size/)** — no install, no sign-up, runs entirely in your browser.
+
 [![CI](https://github.com/aruanoguate/file-tree-size/actions/workflows/sonarcloud.yml/badge.svg)](https://github.com/aruanoguate/file-tree-size/actions/workflows/sonarcloud.yml)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=aruanoguate_file-tree-size&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=aruanoguate_file-tree-size)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=aruanoguate_file-tree-size&metric=coverage)](https://sonarcloud.io/summary/new_code?id=aruanoguate_file-tree-size)
@@ -27,7 +29,7 @@ Install from the [Marketplace](https://marketplace.visualstudio.com/items?itemNa
 
 ## Preview Site
 
-This repo now also contains a static browser preview under `packages/tree-size-preview/`.
+A [live browser preview](https://aruanoguate.github.io/file-tree-size/) is available under `packages/tree-size-preview/`.
 
 - Landing page plus live JSON/XML preview share the same parser and tree UI logic as the VS Code extensions.
 - GitHub Pages deployment is handled by `.github/workflows/pages-preview.yml`.
