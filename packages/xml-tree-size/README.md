@@ -16,6 +16,10 @@ Built by a developer, for developers. Free, open-source, no telemetry. Just righ
 
 ![XML Tree Size — split view with tree explorer and detail bar chart](https://raw.githubusercontent.com/aruanoguate/file-tree-size/main/packages/xml-tree-size/docs/screenshot.png)
 
+## 🚀 Try Before You Install
+
+Not sure yet? **[Try the live demo](https://aruanoguate.github.io/file-tree-size/)** right in your browser — no install, no sign-up, no commitment. Load a sample file or paste your own XML and explore the full tree-size experience instantly.
+
 ## Why XML Tree Size?
 
 | Problem | Solution |

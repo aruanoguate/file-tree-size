@@ -29,7 +29,9 @@
     "tree-size",
     "analyzer",
     "visualizer",
-    "payload"
+    "payload",
+    "live demo",
+    "try online"
   ],
   "engines": {
     "vscode": "^1.85.0"
