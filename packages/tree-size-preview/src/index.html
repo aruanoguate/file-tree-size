@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KD93ZX9F25"></script>
+  <!-- Google Consent Mode v2 — default denied until user accepts -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
+  </script>
+  <!-- Google tag (gtag.js) — respects consent state above -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KD93ZX9F25"></script>
+  <script>
     gtag('js', new Date());
     gtag('config', 'G-KD93ZX9F25');
   </script>
+  <!-- CookieConsent v3 by orestbida -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tree Size — Find What's Bloating Your JSON &amp; XML Files | Try Online or Install in VS Code</title>
@@ -998,5 +1010,69 @@
   </noscript>
 
   <script src="./site.js"></script>
+  <!-- CookieConsent v3 -->
+  <script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js"></script>
+  <script>
+    CookieConsent.run({
+      guiOptions: {
+        consentModal: { layout: 'box inline', position: 'bottom right' },
+        preferencesModal: { layout: 'box' }
+      },
+      categories: {
+        necessary: { enabled: true, readOnly: true },
+        analytics: {
+          autoClear: {
+            cookies: [{ name: /^_ga/ }, { name: '_gid' }]
+          }
+        }
+      },
+      onFirstConsent: function({ cookie }) {
+        updateGtagConsent(cookie);
+      },
+      onChange: function({ cookie }) {
+        updateGtagConsent(cookie);
+      },
+      language: {
+        default: 'en',
+        autoDetect: 'browser',
+        translations: {
+          en: {
+            consentModal: {
+              title: 'We use cookies',
+              description: 'This site uses analytics cookies to understand how visitors interact with the page. No personal data is sold or shared with advertisers.',
+              acceptAllBtn: 'Accept all',
+              acceptNecessaryBtn: 'Reject all',
+              showPreferencesBtn: 'Manage preferences'
+            },
+            preferencesModal: {
+              title: 'Cookie preferences',
+              acceptAllBtn: 'Accept all',
+              acceptNecessaryBtn: 'Reject all',
+              savePreferencesBtn: 'Save preferences',
+              sections: [
+                {
+                  title: 'Strictly necessary',
+                  description: 'Essential for the site to function. Cannot be disabled.',
+                  linkedCategory: 'necessary'
+                },
+                {
+                  title: 'Analytics',
+                  description: 'Help us understand how visitors use the site via Google Analytics. All data is aggregated and anonymous.',
+                  linkedCategory: 'analytics'
+                }
+              ]
+            }
+          }
+        }
+      }
+    });
+
+    function updateGtagConsent(cookie) {
+      var accepted = (cookie.categories || []).indexOf('analytics') !== -1;
+      gtag('consent', 'update', {
+        analytics_storage: accepted ? 'granted' : 'denied'
+      });
+    }
+  </script>
 </body>
 </html>
