@@ -1,6 +1,6 @@
 {
   "displayName": "JSON Tree Size",
-  "description": "JSON-bestandsgrootte-analysator en -visualisator — ontdek wat je JSON opblaast met interactieve boomverkenner, heatmap, groottebalkjes en directe navigatie naar de broncode. 100% lokaal, geen telemetrie. Probeer de live demo — geen installatie nodig.",
+  "description": "JSON-bestandsgrootte-analysator en -visualisator — ontdek wat je JSON opblaast met interactieve boomverkenner, heatmap, groottebalkjes en directe navigatie naar de broncode. Verwerking is lokaal en bestandsinhoud wordt niet geüpload door de extensie. Probeer de live demo — geen installatie nodig.",
   "command.analyze.title": "JSON Tree Size: Analyseren",
   "config.title": "JSON Tree Size",
   "config.baseColor.description": "Basiskleur voor de grootte-heatmap (hex, bijv. #e06c8a). Laat leeg om de standaard blauwe kleur te gebruiken."

@@ -1,6 +1,6 @@
 {
   "displayName": "JSON Tree Size",
-  "description": "JSON dosya boyutu analiz aracı ve görselleştirici — interaktif ağaç gezgini, ısı haritası, boyut çubukları ve tek tıkla kaynağa gitme ile JSON'unuzu neyin şişirdiğini bulun. %100 yerel, telemetri yok. Canlı demoyu deneyin — kurulum gereksiz.",
+  "description": "JSON dosya boyutu analiz aracı ve görselleştirici — interaktif ağaç gezgini, ısı haritası, boyut çubukları ve tek tıkla kaynağa gitme ile JSON'unuzu neyin şişirdiğini bulun. İşleme yerel olarak yapılır ve dosya içerikleri uzantı tarafından yüklenmez. Canlı demoyu deneyin — kurulum gereksiz.",
   "command.analyze.title": "JSON Tree Size: Analiz Et",
   "config.title": "JSON Tree Size",
   "config.baseColor.description": "Boyut ısı haritası için temel renk (hex, ör. #e06c8a). Varsayılan maviyi kullanmak için boş bırakın."

@@ -14,7 +14,7 @@
 
 XML Tree Size gives you the same "what's eating my disk?" experience as [TreeSize](https://www.jam-software.com/treesize) or [WinDirStat](https://windirstat.net/) — but for XML files, right inside VS Code. No CLI tools, no pasting into online formatters, no leaving your editor.
 
-Built by a developer, for developers. Free, open-source, no telemetry. Your data never leaves your machine.
+Built by a developer, for developers. Free and open-source. Processing happens locally, and your file contents are not uploaded by this extension.
 
 ![XML Tree Size — split view with tree explorer and detail bar chart](https://raw.githubusercontent.com/aruanoguate/file-tree-size/main/packages/xml-tree-size/docs/screenshot.png)
 
@@ -28,7 +28,7 @@ Not ready to commit? **[Try the live demo](https://aruanoguate.github.io/file-tr
 |---------|----------|
 | "This SOAP response is massive and I can't find why" | Instantly see which elements consume the most bytes |
 | "I need to trim our XML payload to improve transfer time" | Drill down the tree to find the heaviest nested elements |
-| "Online XML tools feel sketchy for production data" | Everything runs locally in VS Code — your data never leaves your machine |
+| "Online XML tools feel sketchy for production data" | Everything runs locally in VS Code — your file contents are never uploaded by the extension |
 | "I found the big element — now I need to edit it" | Click **"Open in editor"** to jump straight to that line in the source |
 
 ## Features
@@ -84,7 +84,7 @@ Click nodes in the tree to see their children ranked by size in the detail pane.
 ## Frequently Asked Questions
 
 **Is my data safe?**
-Yes — XML Tree Size runs entirely inside VS Code. Your files are never uploaded, and there is zero telemetry. [Try the live demo](https://aruanoguate.github.io/file-tree-size/) to verify — it runs 100 % in the browser too.
+Yes — XML Tree Size runs entirely inside VS Code. Your file contents are processed locally and are not uploaded by the extension. [Try the live demo](https://aruanoguate.github.io/file-tree-size/) to verify — it runs 100 % in the browser too.
 
 **How does it parse large XML files?**
 It uses a SAX streaming parser, so it never loads the entire DOM into memory. The practical limit is your available memory.

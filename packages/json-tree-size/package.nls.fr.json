@@ -1,6 +1,6 @@
 {
   "displayName": "JSON Tree Size",
-  "description": "Analyseur et visualiseur de taille de fichiers JSON — trouvez ce qui alourdit votre JSON avec explorateur interactif, carte thermique, barres de taille et navigation directe vers le code source. 100 % local, sans télémétrie. Essayez la démo en ligne — sans installation.",
+  "description": "Analyseur et visualiseur de taille de fichiers JSON — trouvez ce qui alourdit votre JSON avec explorateur interactif, carte thermique, barres de taille et navigation directe vers le code source. Le traitement est local et le contenu des fichiers n'est pas téléversé par l'extension. Essayez la démo en ligne — sans installation.",
   "command.analyze.title": "JSON Tree Size : Analyser",
   "config.title": "JSON Tree Size",
   "config.baseColor.description": "Couleur de base pour la carte thermique des tailles (hex, ex. #e06c8a). Laissez vide pour utiliser le bleu par défaut."

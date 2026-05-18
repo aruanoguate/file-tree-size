@@ -1,6 +1,6 @@
 {
   "displayName": "JSON Tree Size",
-  "description": "Analizator i wizualizator rozmiaru plików JSON — znajdź, co rozdyma Twój JSON, z interaktywnym eksploratorem drzewa, mapą cieplną, paskami rozmiaru i nawigacją do źródła jednym kliknięciem. 100% lokalnie, bez telemetrii. Wypróbuj demo na żywo — bez instalacji.",
+  "description": "Analizator i wizualizator rozmiaru plików JSON — znajdź, co rozdyma Twój JSON, z interaktywnym eksploratorem drzewa, mapą cieplną, paskami rozmiaru i nawigacją do źródła jednym kliknięciem. Przetwarzanie odbywa się lokalnie, a zawartość plików nie jest przesyłana przez rozszerzenie. Wypróbuj demo na żywo — bez instalacji.",
   "command.analyze.title": "JSON Tree Size: Analizuj",
   "config.title": "JSON Tree Size",
   "config.baseColor.description": "Kolor bazowy mapy cieplnej rozmiarów (hex, np. #e06c8a). Pozostaw puste, aby użyć domyślnego niebieskiego."

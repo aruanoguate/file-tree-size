@@ -1,6 +1,6 @@
 {
   "displayName": "XML Tree Size",
-  "description": "Analizator payloadów XML i SOAP — znajdź, co rozdyma Twój XML, z interaktywnym eksploratorem drzewa, mapą cieplną, paskami rozmiaru i nawigacją do źródła jednym kliknięciem. 100% lokalnie, bez telemetrii. Wypróbuj demo na żywo — bez instalacji.",
+  "description": "Analizator payloadów XML i SOAP — znajdź, co rozdyma Twój XML, z interaktywnym eksploratorem drzewa, mapą cieplną, paskami rozmiaru i nawigacją do źródła jednym kliknięciem. Przetwarzanie odbywa się lokalnie, a zawartość plików nie jest przesyłana przez rozszerzenie. Wypróbuj demo na żywo — bez instalacji.",
   "command.analyze.title": "XML Tree Size: Analizuj",
   "config.title": "XML Tree Size",
   "config.baseColor.description": "Kolor bazowy mapy cieplnej rozmiarów (hex, np. #e06c8a). Pozostaw puste, aby użyć domyślnego niebieskiego."

@@ -19,6 +19,10 @@ async function writeStaticFiles() {
   await ensureDir(path.join(distDir, 'assets'));
   await copyFile(path.join(packageRoot, 'src', 'index.html'), path.join(distDir, 'index.html'));
   await copyFile(
+    path.join(packageRoot, 'src', 'google39a53281f912982e.html'),
+    path.join(distDir, 'google39a53281f912982e.html')
+  );
+  await copyFile(
     path.join(packageRoot, '..', 'json-tree-size', 'docs', 'icon.png'),
     path.join(distDir, 'assets', 'json-icon.png')
   );

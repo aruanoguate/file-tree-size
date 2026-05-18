@@ -1,6 +1,6 @@
 {
   "displayName": "JSON Tree Size",
-  "description": "JSON file size analyzer and visualizer — find what's bloating your JSON with an interactive tree explorer, heat-map coloring, size bars, and one-click source navigation. 100% local, no telemetry. Try the live demo — no install needed.",
+  "description": "JSON file size analyzer and visualizer — find what's bloating your JSON with an interactive tree explorer, heat-map coloring, size bars, and one-click source navigation. Processing is local, and file contents are not uploaded by the extension. Try the live demo — no install needed.",
   "command.analyze.title": "JSON Tree Size: Analyze",
   "config.title": "JSON Tree Size",
   "config.baseColor.description": "Base color for the size heat map (hex, e.g. #e06c8a). Leave empty for the default blue."

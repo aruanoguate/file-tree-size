@@ -14,7 +14,7 @@
 
 JSON Tree Size gives you the same "what's eating my disk?" experience as [TreeSize](https://www.jam-software.com/treesize) or [WinDirStat](https://windirstat.net/) — but for JSON files, right inside VS Code. No CLI tools, no pasting into online formatters, no leaving your editor.
 
-Built by a developer, for developers. Free, open-source, no telemetry. Your data never leaves your machine.
+Built by a developer, for developers. Free and open-source. Processing happens locally, and your file contents are not uploaded by this extension.
 
 ![JSON Tree Size — split view with tree explorer and detail bar chart](https://raw.githubusercontent.com/aruanoguate/file-tree-size/main/packages/json-tree-size/docs/screenshot.png)
 
@@ -28,7 +28,7 @@ Not ready to commit? **[Try the live demo](https://aruanoguate.github.io/file-tr
 |---------|----------|
 | "This config file is 12 MB and I have no idea why" | Instantly see which keys consume the most bytes |
 | "I need to cut our API response payload" | Drill down the tree to find the heaviest nested objects |
-| "Online JSON size tools feel sketchy for production data" | Everything runs locally in VS Code — your data never leaves your machine |
+| "Online JSON size tools feel sketchy for production data" | Everything runs locally in VS Code — your file contents are never uploaded by the extension |
 | "I found the big key — now I need to edit it" | Click **"Open in editor"** to jump straight to that line in the source |
 
 ## Features
@@ -83,7 +83,7 @@ Click nodes in the tree to see their children ranked by size in the detail pane.
 ## Frequently Asked Questions
 
 **Is my data safe?**
-Yes — JSON Tree Size runs entirely inside VS Code. Your files are never uploaded, and there is zero telemetry. [Try the live demo](https://aruanoguate.github.io/file-tree-size/) to verify — it runs 100 % in the browser too.
+Yes — JSON Tree Size runs entirely inside VS Code. Your file contents are processed locally and are not uploaded by the extension. [Try the live demo](https://aruanoguate.github.io/file-tree-size/) to verify — it runs 100 % in the browser too.
 
 **How large a file can it handle?**
 Worker thread parsing keeps the editor responsive for files over 50 MB. The practical limit is your available memory.

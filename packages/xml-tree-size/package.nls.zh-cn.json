@@ -1,6 +1,6 @@
 {
   "displayName": "XML Tree Size",
-  "description": "XML 和 SOAP 负载大小分析器 — 通过交互式树形浏览器、热力图、大小条形图和一键跳转源码，找出 XML 膨胀原因。100% 本地运行，无遥测。试试在线演示 — 无需安装。",
+  "description": "XML 和 SOAP 负载大小分析器 — 通过交互式树形浏览器、热力图、大小条形图和一键跳转源码，找出 XML 膨胀原因。本地处理，文件内容不会被扩展上传。试试在线演示 — 无需安装。",
   "command.analyze.title": "XML Tree Size: 分析",
   "config.title": "XML Tree Size",
   "config.baseColor.description": "大小热力图的基础颜色（十六进制，例如 #e06c8a）。留空则使用默认蓝色。"

@@ -1,6 +1,6 @@
 {
   "displayName": "JSON Tree Size",
-  "description": "JSON 文件大小分析器与可视化工具 — 通过交互式树形浏览器、热力图、大小条形图和一键跳转源码，找出 JSON 膨胀原因。100% 本地运行，无遥测。试试在线演示 — 无需安装。",
+  "description": "JSON 文件大小分析器与可视化工具 — 通过交互式树形浏览器、热力图、大小条形图和一键跳转源码，找出 JSON 膨胀原因。本地处理，文件内容不会被扩展上传。试试在线演示 — 无需安装。",
   "command.analyze.title": "JSON Tree Size: 分析",
   "config.title": "JSON Tree Size",
   "config.baseColor.description": "大小热力图的基础颜色（十六进制，例如 #e06c8a）。留空则使用默认蓝色。"

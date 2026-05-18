@@ -1,6 +1,6 @@
 {
   "displayName": "XML Tree Size",
-  "description": "Penganalisis payload XML dan SOAP — temukan apa yang membengkakkan XML Anda dengan penjelajah pohon interaktif, peta panas, bilah ukuran, dan navigasi satu klik ke kode sumber. 100% lokal, tanpa telemetri. Coba demo langsung — tanpa instalasi.",
+  "description": "Penganalisis payload XML dan SOAP — temukan apa yang membengkakkan XML Anda dengan penjelajah pohon interaktif, peta panas, bilah ukuran, dan navigasi satu klik ke kode sumber. Pemrosesan dilakukan secara lokal dan konten file tidak diunggah oleh ekstensi. Coba demo langsung — tanpa instalasi.",
   "command.analyze.title": "XML Tree Size: Analisis",
   "config.title": "XML Tree Size",
   "config.baseColor.description": "Warna dasar untuk peta panas ukuran (hex, cth. #e06c8a). Biarkan kosong untuk menggunakan biru bawaan."
