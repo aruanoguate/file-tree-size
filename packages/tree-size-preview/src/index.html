@@ -3,7 +3,7 @@
 <head>
   <!-- Google Consent Mode v2 — default denied until user accepts -->
   <script>
-    window.dataLayer = window.dataLayer || [];
+    globalThis.dataLayer = globalThis.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('consent', 'default', {
       analytics_storage: 'denied',
@@ -14,13 +14,14 @@
     });
   </script>
   <!-- Google tag (gtag.js) — respects consent state above -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KD93ZX9F25"></script>
+  <!-- SRI intentionally omitted: Google serves dynamic content, hash would break on every update -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KD93ZX9F25" crossorigin="anonymous"></script><!-- NOSONAR -->
   <script>
     gtag('js', new Date());
     gtag('config', 'G-KD93ZX9F25');
   </script>
   <!-- CookieConsent v3 by orestbida -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css" integrity="sha384-9KcNFt4axT+TNOVPHpwGHOm4Kv0UcMjdVya1kl+EPBQG+Vmqtz28cnx0f5PZYcnF" crossorigin="anonymous" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tree Size — Find What's Bloating Your JSON &amp; XML Files | Try Online or Install in VS Code</title>
@@ -1011,7 +1012,7 @@
 
   <script src="./site.js"></script>
   <!-- CookieConsent v3 -->
-  <script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js" integrity="sha384-rOJir5X47vJ4L28li0UMSxnlIl8p7RJ3I7C0t3vPJFmBNKm+ML654YY3uMpicukc" crossorigin="anonymous"></script>
   <script>
     CookieConsent.run({
       guiOptions: {
@@ -1068,7 +1069,7 @@
     });
 
     function updateGtagConsent(cookie) {
-      var accepted = (cookie.categories || []).indexOf('analytics') !== -1;
+      var accepted = (cookie.categories || []).includes('analytics');
       gtag('consent', 'update', {
         analytics_storage: accepted ? 'granted' : 'denied'
       });
